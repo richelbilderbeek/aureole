@@ -1,7 +1,11 @@
 PingAPI <- function(MyKey=NULL) {
-  web <- "http://eol.org/api/ping.xml"
+  web <- "https://eol.org/api/ping.xml"
   if(!is.null(MyKey))
     web <- paste(web, "?key=", MyKey, sep="")
-  a <- getURL(web)  
-  xmlToList(xmlRoot(xmlParse(a, getDTD=FALSE)))$message
+  a <- getURL(web)
+  XML::xmlToList(
+    XML::xmlRoot(
+      XML::xmlParse(a, getDTD = FALSE)
+    )
+  )$response$message
 }
