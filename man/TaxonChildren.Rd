@@ -23,6 +23,7 @@ offspring and parantage.
 }
 \examples{
 
+
 #simple example using Reol data:
 data(MyHiers)
 TaxonChildren(MyHiers)
@@ -46,6 +47,7 @@ repdbAnolis <- DownloadHierarchy(eolAnolis, to.file=FALSE, database="The Reptile
      Database")
 TaxonChildren(repdbAnolis)
 }
+
 
 
 }

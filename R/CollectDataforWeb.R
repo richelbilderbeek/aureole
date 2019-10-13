@@ -1,3 +1,24 @@
+#' Process XML Data into tree format
+#'
+#' This function will read in the XML data and parse it into a tree structure for R to read.
+#' @param MyEOL A filename or R object for downloaded EOL pages
+#' @param MyFiles A vector of filenames or R objects for EOL or Hier pages
+#' @return an XML tree as an R object.
+#' @note \code{RemoveNAFiles} is an internal function
+#' that will take a vector of filenames
+#' and check to make sure they all have
+#' data associated (sometimes requested pages
+#' will be empty and contain no information).
+#' If they are empty, they are cleaved from the analysis.
+#' @examples
+#' # Reads in a file
+#' PageProcessing("eol1.xml")
+#'
+#' # or reads in an R object
+#' data(MyEOLs)
+#' PageProcessing(MyEOLs[1])#'
+#' @aliases PageProcessing
+#' @aliases RemoveNAFiles
 PageProcessing <- function(MyEOL) {
   res <- XML::xmlToList(
     XML::xmlRoot(
@@ -100,11 +121,11 @@ DataProcessing <- function(res, do.higher.taxonomy) {
 
 
 #' Collect Data from EOL Pages for Website
-#' 
+#'
 #' These functions will read and scrape content off the downloaded EOL pages.
 #' This is for building the data table on eoldata.org.
-#' 
-#' 
+#'
+#'
 #' @aliases CollectDataforWeb DataProcessing CNCount DOCount providerCount
 #' @param MyEOL A single filename for downloaded EOL pages
 #' @param res XML object
@@ -112,10 +133,10 @@ DataProcessing <- function(res, do.higher.taxonomy) {
 #' taxonomy
 #' @return Appends EOL data to a table.
 #' @examples
-#' 
+#'
 #' 	data(MyEOLs)
 #' 	CollectDataforWeb(MyEOLs[1])
-#' 
+#'
 #' @export CollectDataforWeb
 CollectDataforWeb <- function(MyEOL, do.higher.taxonomy=FALSE) {
 #  higher.taxonomy<-""
