@@ -44,24 +44,48 @@ use `can_use_eol`:
 expect_true(can_use_eol())
 ```
 
-```
- \section{Downloading EOL Pages}
-The first step is to get information from EOL pages to your local machine. There are two ways to download information, 1) you can download individual files/pages off EOL and house the .xml in your working directory (\texttt{to.file=TRUE}) or 2) you can choose to download within R and save the list within your workspace (\texttt{to.file=FALSE}). This vignette and all of the examples in the help files are set to download data as an R object, so that no additional files are generated. However, if you are running the examples by hand, you can select whichever method you prefer. Also, if you are downloading files, be sure to set whichever working directory you wish to use using \texttt{setwd(your/path/)}. EOL pages will all download with an eol prefix, followed by the EOL ID, so they can easily be stored all in the same place. Verbosity will print downloaded file status to screen. 
+## Downloading EOL Pages
+
+The first step is to get information from EOL pages to your local machine. There are two ways to download information, 
+
+1) you can download individual files/pages off EOL and house the .xml in your working directory (\texttt{to.file=TRUE})
+
+2) you can choose to download within R and save the list within your workspace (\texttt{to.file=FALSE}). 
+
+This vignette and all of the examples in the help files are set to download data as an R object, so that no additional files are generated. However, if you are running the examples by hand, you can select whichever method you prefer. Also, if you are downloading files, be sure to set whichever working directory you wish to use using \texttt{setwd(your/path/)}. EOL pages will all download with an eol prefix, followed by the EOL ID, so they can easily be stored all in the same place. Verbosity will print downloaded file status to screen. 
 
 There are benefits and drawbacks to which type of download you choose. If you choose to download to files, then a single file will be created for each EOL page you download. These files are small text files, and shouldn't take up much space on your computer, however they will need management in terms of organization. Downloading to the R workspace is a nice alternative to keeping track of files, however there will be a limit of computer memory to how many you can store before having allocation issues. We recommend that if you are going to download a small number of taxa to download as an R object, but if you are downloading a large number of taxa then to save files.  
- 
-\begin{Schunk}
-\begin{Sinput}
-> GreatApes <- c( "Pan troglodytes",  "Pan paniscus",
-+          "Pongo pygmaeus", "Pongo abelii", "Gorilla gorilla", 
-+ 	"Gorilla beringei", "Homo sapiens")
-> DownloadedApes <- DownloadSearchedTaxa(GreatApes, to.file=FALSE, 
-+ 	verbose=FALSE)
-\end{Sinput}
-\end{Schunk}
 
-If you are downloading files, \texttt{DownloadSearchedTaxa} will return a vector of filenames with the eol prefix followed by the EOL ID. If you are downloading to the R workspace, then \texttt{DownloadSearchedTaxa} will return a list, where each item in the list is a separate eol page. To get the EOL ID associated with the list, you can use \texttt{names()}. It is also possible to download taxa using the \texttt{DownloadEOLpages} function, which accepts the EOL ID number rather than a taxonomic name. 
+```{r} 
+taxon_names <- c(
+  "Pan troglodytes",
+  "Pan paniscus",
+  "Pongo pygmaeus",
+  "Pongo abelii",
+  "Gorilla gorilla", 
+  "Gorilla beringei",
+  "Homo sapiens"
+)
+```
 
+Download them:
+
+```{r}
+eol_pages <- get_eol_pages(taxon_names)
+cat(length(eol_pages))
+```
+
+Display the top of the data frame of the *Homo sapiens* page:
+
+```{r}
+knitr::kable(head(eol_pages[[7]]))
+```
+
+If you are downloading files, \texttt{DownloadSearchedTaxa} will return a vector of filenames with the eol prefix followed by the EOL ID. 
+
+If you are downloading to the R workspace, then \texttt{DownloadSearchedTaxa} will return a list, where each item in the list is a separate eol page. To get the EOL ID associated with the list, you can use \texttt{names()}. It is also possible to download taxa using the \texttt{DownloadEOLpages} function, which accepts the EOL ID number rather than a taxonomic name. 
+
+```
 \begin{Schunk}
 \begin{Sinput}
 > names(DownloadedApes)
@@ -71,8 +95,10 @@ If you are downloading files, \texttt{DownloadSearchedTaxa} will return a vector
 [5] "eol326447"  "eol2923523" "eol327955" 
 \end{Soutput}
 \end{Schunk}
+```
 
- \section{Gathering Data from EOL pages}
+## Gathering Data from EOL pages
+
 Any EOL data can be gathered that is available via the API, but for now \textit{Reol} is focused on numerical data (text mining is a future possibility). These gathering functions will all use the downloaded EOL information. Remember though, that in order to find information, you either have to be in the same working directory as the files are located or have the correct workspace loaded. The functions will collect data in various ways, but all of them are coded to accept either a vector of file names OR a list of EOL pages. The user doesn't need to specify which they are submitting. 
 
 \subsection{Richness}
