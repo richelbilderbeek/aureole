@@ -16,45 +16,35 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
+library(testthat)
 library(reol)
 ```
 
-
-```
-\documentclass[12pt]{article}
-\usepackage{amsmath} 
-\title{Reol}
-\author{Barb Banbury, University of Tennessee, bbanbury@utk.edu}
-\date{\today}
-%\VignetteIndexEntry{How to Use Reol}
-
-\usepackage{Sweave}
-\begin{document}
-\maketitle
-
-
-
-\textit{Reol} is a package that interfaces the Encyclopedia of Life (EOL) with the R environment. It will download EOL pages via the API, and text is scraped for content and amassed into various datasets. \textit{Reol} can be used to download and manipulate data about any taxonomic groups. In addition, data from provider pages can be downloaded and used for creating taxonomic trees or gathering taxonomic synonyms. 
+`reol` is a package that interfaces the Encyclopedia of Life (EOL) with the R environment. It will download EOL pages via the API, and text is scraped for content and amassed into various datasets. `reol` can be used to download and manipulate data about any taxonomic groups. In addition, data from provider pages can be downloaded and used for creating taxonomic trees or gathering taxonomic synonyms. 
 
 This document will provide a deeper explanation about the various functions than the help pages, and provide examples of typical application. I will be using the Great Apes as a working example, since it is a nice small group and the individual species have a lot of information.  
 
- 
- \section{Getting Started}
-This vignette assumes you have the current version of R (>3.0) and Reol (>1.20). First, install and load the package. A stable release is available through CRAN (http://cran.r-project.org/web/packages/Reol/) and an unstable working repository is available for use through our R-Forge site (https://r-forge.r-project.org/projects/reol/). The repository will be the most current edition of \textit{Reol} and probably comes with new bells and whistles, but note that it also might contain bugs. If you encounter any issues during use, please submit them to our R-Forge site under trackers. 
+## Getting Started
+
+A stable release is available
+at GitHub, [https://github.com/richelbilderbeek/reol](https://github.com/richelbilderbeek/reol).
+
+Install the package like this:
+
+```
+remotes::install_github("richelbilderbeek/reol")
+```
 
 You can register as an EOL user on their website (http://eol.org/users/register) and generate and save an API key in your user profile. This key is a unique identifier that you can use when using the EOL API. Though it is not required, it is recommended to use a key, especially if you are going to be using the API heavily. All \textit{Reol} functions that interact with the API have the option to include a key (\texttt{MyKey}). 
 
-To ensure that the API is up and running, you can use the \texttt{PingAPI} function. If there is an error, it will report the error message. 
-\begin{Schunk}
-\begin{Sinput}
-> library(Reol)
-> PingAPI()
-\end{Sinput}
-\begin{Soutput}
-[1] "Success"
-\end{Soutput}
-\end{Schunk}
+To check if the Encyclopedia Of Life website can be used, 
+use `can_use_eol`:
 
+```{r}
+expect_true(can_use_eol())
+```
+
+```
  \section{Downloading EOL Pages}
 The first step is to get information from EOL pages to your local machine. There are two ways to download information, 1) you can download individual files/pages off EOL and house the .xml in your working directory (\texttt{to.file=TRUE}) or 2) you can choose to download within R and save the list within your workspace (\texttt{to.file=FALSE}). This vignette and all of the examples in the help files are set to download data as an R object, so that no additional files are generated. However, if you are running the examples by hand, you can select whichever method you prefer. Also, if you are downloading files, be sure to set whichever working directory you wish to use using \texttt{setwd(your/path/)}. EOL pages will all download with an eol prefix, followed by the EOL ID, so they can easily be stored all in the same place. Verbosity will print downloaded file status to screen. 
 
