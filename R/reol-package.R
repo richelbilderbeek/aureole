@@ -29,8 +29,7 @@ NULL
 #' \tabular{ll}{ Package: \tab Reol\cr Type: \tab Package\cr Version: \tab
 #' 1.21\cr Date: \tab 2013-9-9\cr License: \tab GPL (>= 2)\cr}
 #'
-#' @name reol-package
-#' @aliases Reol-package Reol reol
+#' @name reol
 #' @docType package
 #' @author Barb Banbury, Brian O'Meara, Richel J.C. Bilderbeek
 NULL
