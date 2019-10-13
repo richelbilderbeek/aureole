@@ -11,6 +11,7 @@ Suggests:
     geiger,
     testthat (>= 2.1.0),
     knitr,
+    testit,
     rmarkdown
 LazyData: yes
 Description: An R interface to the Encyclopedia of Life API. 
