@@ -7,6 +7,13 @@
 get_image_urls_from_name(species_name, use_exact_name = TRUE,
   verbose = FALSE)
 }
+\arguments{
+\item{species_name}{name of a species}
+
+\item{use_exact_name}{do use the exact name}
+
+\item{verbose}{give more output}
+}
 \value{
 a data frame with species name, ID and URLs
 }

@@ -1,4 +1,5 @@
 #' Get the Encyclopedia Of Life image URL from a species name
+#' @inheritParams default_params_doc
 #' @return a data frame with species name, ID and URLs
 #' @export
 get_image_urls_from_name <- function(
