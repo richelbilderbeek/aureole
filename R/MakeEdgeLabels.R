@@ -51,6 +51,60 @@ WhatToDoWithDuplicateEdgeNames <- function(edgeLabels, duplicateEdgeLabels){
     return(paste(names(edgeLabels), sep="", collapse="."))
 }
 
+
+
+
+
+#' Creates Edge Labels for Hierarchy Trees
+#' 
+#' These functions will create edge labels for hierarchy trees.
+#' 
+#' Note that edges are slightly different than node labels, in that edges are
+#' plotted along the center of the branch rather than at a node.  Plotting both
+#' is redundant, but one or the other may look better aesthetically.  Also
+#' edges in the edgeLabels function is not the actual edge number, but the row.
+#' Our functions reflect this.  There will likely be cases where edges have
+#' more than one hierarchical name (for example, the branch to camel species
+#' will have the genus Camelus and the family Camelidae). When making edge
+#' labels, you have the choice of using the most recent hierarchical name
+#' (genus in the camel example) or the oldest (family in camels), or you can
+#' choose to combine the names so that you can see all of them
+#' (Camilidae.Camelus).
+#' 
+#' @aliases MakeEdgeLabels node.leaves node.offspring getTipList
+#' WhatToDoWithDuplicateEdgeNames whichEdge
+#' @param phy A tree in the class phylo
+#' @param node Any node number in the tree
+#' @param MyHiers A vector of hier pages OR a list of XMLs as an R object
+#' @param taxa Vector of tip taxa
+#' @param edgeLabels Vector of edge labels with the same associated branch
+#' @param duplicateEdgeLabels Choice of which edge label to prefer: recent,
+#' oldest, or combined
+#' @param missingData If tip taxa are not all the same taxonomic rank, should
+#' Reol cleave out taxa or hierarchical rank first
+#' @param label Which hierarchical units should be included in the edge labels
+#' @return \code{MakeEdgeLabels} returns a vector of edges and their clade
+#' names to be used in apes edgeLabels function.  \code{getTipList},
+#' \code{WhatToDoWithDuplicateEdgeNames}, and \code{whichEdge} are internal
+#' functions for \code{MakeEdgeLabel}.
+#' @seealso \code{\link{MakeHierarchyTree}}
+#' @examples
+#' 
+#' library(ape)
+#' data(MyHiers)
+#' Tree <- MakeHierarchyTree(MyHiers, includeNodeLabels=FALSE)
+#' edges <- MakeEdgeLabels(MyHiers)	
+#' plot(Tree, show.node.label=FALSE)
+#' edgelabels(text=names(edges), edge=edges)  
+#' 
+#' 
+#' \dontrun{
+#' edges <- MakeEdgeLabels(MyHiers, missingData="pruneTaxa", duplicateEdgeLabels="recent")
+#' plot(Tree, show.node.label=FALSE)
+#' edgelabels(text=names(edges), edge=edges)  
+#' }
+#' 
+#' @export MakeEdgeLabels
 MakeEdgeLabels <- function(MyHiers, label="all", missingData=NULL, duplicateEdgeLabels="oldest"){
   MyHiers <- RemoveNAFiles(MyHiers)
   nodeList <- NodeLabelList(MyHiers, label="all", missingData=missingData)

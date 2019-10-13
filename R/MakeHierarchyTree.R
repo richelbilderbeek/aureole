@@ -1,3 +1,15 @@
+#' Subset Data For Hier Trees
+#' 
+#' This internal function removes repeat taxonomic units, undefined clades, and
+#' NAs from hierarchy information.
+#' 
+#' 
+#' @param oneFileHier A dataframe of taxonomic hierarchy information out of
+#' OneFileHierarchy function
+#' @param HierID Hierarchy ID value of interest
+#' @return Returns a subset data frame with only parent nodes from HierID up
+#' for building taxonomic trees.
+#' @export subsetDataForHierTrees
 subsetDataForHierTrees <- function(oneFileHier, HierID) {
   oneFileHier <- matrix(oneFileHier[1:which(oneFileHier[,6] == HierID),], ncol=7)  #stop at HierID to avoid taking children
   oneFileHier  <- matrix(oneFileHier[which(!duplicated(oneFileHier[,2])),], ncol=7) #delete repeats
@@ -25,6 +37,24 @@ MergeTaxonomies <- function(i, j) {
   return(combined)
 }
 
+
+
+
+
+#' Combine Hierarchy Info
+#' 
+#' This function combines different hierarchy dataframes into one. Mostly an
+#' internal function for tree and edge label building.
+#' 
+#' 
+#' @param MyHiers A vector of hier pages to combine
+#' @return Returns a combined data frame.
+#' @examples
+#' 
+#' 	data(MyHiers)
+#' 	CombineHierarchyInfo(MyHiers)
+#' 
+#' @export CombineHierarchyInfo
 CombineHierarchyInfo <- function(MyHiers) {
   CombFiles <- matrix(nrow=0, ncol=7)
   longestHierTaxon <- 0  #start at 0, so it accepts the first file as the longest
@@ -71,6 +101,28 @@ MakeTreeData <- function(MyHiers) {
   return(TreeData)
 }  
 
+
+
+
+
+#' Repeat Data To Drop
+#' 
+#' These internal functions determine columns or rows of data that are either
+#' all the same (thus providing no hierarchical information) or contain NAs.
+#' \code{DropADim} walks through the TreeData table and deletes either a row or
+#' a column that has the most amount of missing data.  It continues this
+#' stepwise until there are no longer any NAs in TreeData.  This preserves as
+#' much data as possible.  Then \code{RepeatDataToDrop} will delete any columns
+#' of TreeData that have all the same information (these can not be used with
+#' ape tree plotting)
+#' 
+#' 
+#' @aliases RepeatDataToDrop DropADim
+#' @param TreeData A data frame from
+#' @return \code{DropADim} returns a new TreeData table with no NAs.
+#' \code{RepeatDataToDrop} returns boolean response of whether to drop data or
+#' not.
+#' @export RepeatDataToDrop
 RepeatDataToDrop <- function(TreeData) {
   #Drop any columns that are the same or NA
   if(length(unique(TreeData)) == 1)
@@ -114,6 +166,68 @@ AutofillTaxonNames <- function(TreeData){
 }
   
 
+
+
+
+
+#' Creates Hierarchical Trees
+#' 
+#' These functions will create a taxonomic tree (dendrogram) based on ranking
+#' from EOLs provider (hierarchy) pages.
+#' 
+#' This tree displays taxonomic structuring only and is not the result of a
+#' phylogenetic analysis. Alos note that not all providers return hierarchy
+#' information, if errors or no tree is returned it is likely that information
+#' is missing and you may have to use another provider.
+#' 
+#' @aliases MakeTreeData AutofillTaxonNames MakeHierarchyTree ReturnTaxSet
+#' NodeLabelList MergeTaxonomies
+#' @param MyHiers A vector of filenames or a list of XMLs for downloaded EOL
+#' pages
+#' @param TreeData A dataframe of taxonomic hierarchy information out of
+#' MakeTreeData function
+#' @param missingData If tip taxa are not all the same taxonomic rank, should
+#' Reol cleave out taxa or hierarchical rank first
+#' @param includeNodeLabels Option to write node labels to phylogenetic tree
+#' (Note, this can also be done separately using \code{NodeLabelList}
+#' @param userRanks Option for the user to define their own hierarchical
+#' pattern to make a tree.  This will define which ranked classifications to
+#' include in the final tree.  If left NULL, it will try to keep as much
+#' information as possible.
+#' @param Taxon Taxonomic group that contains subunits
+#' @param label Which hierarchical units should be included in the node labels
+#' @param i A Hierarchical Taxonomy (ex: Kingdom, Class, Species)
+#' @param j A Hierarchical Taxonomy (ex: Class, Genus, Species)
+#' @return \code{MakeTreeData} returns a data frame with data for use in
+#' \code{MakeHierarchyTree} function, but can also be used independently to
+#' examine the hierarchical structure. \code{AutofillTaxonNames} is an internal
+#' function that deals with missing internal data in TreeData. If taxa are of
+#' varying hierarchical ranks (for example a mix of genera and species) then
+#' tips can not be aligned in the tree.  You will need to select what data you
+#' would like to drop from the analysis; for example, either taxa with missing
+#' species information OR all species names that will then make a tree of
+#' genera. \code{MakeHierarchyTree} returns taxonomic tree in the class phylo.
+#' \code{ReturnTaxSet} will return the tree tips for the taxonomic group
+#' requested, this is mostly an internal function for creating node labels.
+#' \code{MakeNodeLabels} will return a list of tip labels per internal node.
+#' This can be used to create node labels to plot on the tree.
+#' \code{MergeTaxonomies} will merge two taxonomies into a single list that
+#' preserves hierarchical structure. It is mostly for internal use.
+#' @seealso \code{\link{ProviderCount}} \code{\link{DownloadHierarchy}}
+#' \code{\link{MakeEdgeLabels}}
+#' @examples
+#' 
+#' data(MyHiers)
+#' TreeData <- MakeTreeData(MyHiers)
+#' Tree <- MakeHierarchyTree(MyHiers, includeNodeLabels=TRUE)
+#' labels <- NodeLabelList(MyHiers, "all")
+#' plot(Tree, show.node.label=TRUE)
+#' 
+#' plot(Tree, "c", show.node.label=TRUE, adj=0.5, font=3, edge.color="gray",
+#' 	tip.color=rainbow(10))
+#' 
+#' 
+#' @export MakeHierarchyTree
 MakeHierarchyTree <- function(MyHiers, missingData=NULL, includeNodeLabels=TRUE, userRanks=NULL) {
   TreeData <- MakeTreeData(MyHiers)
   pattern <- paste("~", paste(colnames(TreeData), sep="", collapse="/"), sep="")

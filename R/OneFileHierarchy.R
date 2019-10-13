@@ -1,3 +1,18 @@
+#' Creates A Taxonomic Hierarchy for a single Taxon
+#' 
+#' This function uses a provider hierarchy file to gather information about all
+#' taxonomic levels and their associated IDs.
+#' 
+#' 
+#' @param MyHier A single of filename for downloaded hierarchy page
+#' @return Returns a data frame where each row is a hierarchical taxonomic
+#' unit.
+#' @examples
+#' 
+#' 	data(MyHiers)
+#' 	OneFileHierarchy(MyHiers[1])
+#' 
+#' @export OneFileHierarchy
 OneFileHierarchy<- function (MyHier) {
 	res <- PageProcessing(MyHier)
 	resTaxonOnly <- which(names(res) == "Taxon")

@@ -16,3 +16,5 @@ Description: An R interface to the Encyclopedia of Life API.
     and extracting information off the EOL pages.
 License: GPL (>= 2)
 BugReports: https://github.com/richelbilderbeek/reol/issues
+RoxygenNote: 6.1.1
+Encoding: UTF-8

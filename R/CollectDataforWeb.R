@@ -1,9 +1,17 @@
-PageProcessing <- function(MyEOL, ...) {
-  res <- xmlToList(xmlRoot(xmlParse(MyEOL, getDTD=FALSE), ...), simplify=FALSE)
+PageProcessing <- function(MyEOL) {
+  res <- XML::xmlToList(
+    XML::xmlRoot(
+      XML::xmlParse(
+        MyEOL,
+        getDTD = FALSE
+      )
+    ),
+    simplify = FALSE
+  )
   if(!is.null(res$error)) {
     system(paste("mv", MyEOL, "../TRASH/"))
     stop(paste("Bad file", MyEOL, "has been purged"))
-    }
+  }
   return(res)
 }
 
@@ -81,12 +89,34 @@ DataProcessing <- function(res, do.higher.taxonomy) {
     	try(higher.taxonomy<-paste(MakeTreeData (DownloadHierarchy(res, to.file=FALSE)), collapse="/"))
     	if(nchar(higher.taxonomy)==0) {
     		try(higher.taxonomy<-paste(MakeTreeData (DownloadHierarchy(DownloadEOLpages(res$taxonConcept$taxonConceptID, to.file=FALSE), to.file=FALSE)), collapse="/")) #sometimes the taxon name does not match to the hierarchy, but the eol ID does
-    	}	
+    	}
     }
-  }	
+  }
   return(matrix(c(taxonData, richness, refCounts, CNs, providers , DOs, pageLength, higher.taxonomy), nrow=1))
 }
 
+
+
+
+
+#' Collect Data from EOL Pages for Website
+#' 
+#' These functions will read and scrape content off the downloaded EOL pages.
+#' This is for building the data table on eoldata.org.
+#' 
+#' 
+#' @aliases CollectDataforWeb DataProcessing CNCount DOCount providerCount
+#' @param MyEOL A single filename for downloaded EOL pages
+#' @param res XML object
+#' @param do.higher.taxonomy TRUE/FALSE on whether to download higher level
+#' taxonomy
+#' @return Appends EOL data to a table.
+#' @examples
+#' 
+#' 	data(MyEOLs)
+#' 	CollectDataforWeb(MyEOLs[1])
+#' 
+#' @export CollectDataforWeb
 CollectDataforWeb <- function(MyEOL, do.higher.taxonomy=FALSE) {
 #  higher.taxonomy<-""
 #  if(do.higher.taxonomy) {

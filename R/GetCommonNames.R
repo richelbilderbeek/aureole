@@ -1,3 +1,27 @@
+#' Gather Common Name Information
+#' 
+#' This function gathers each species common names and the language with which
+#' they are associated.
+#' 
+#' 
+#' @param MyEOLs A vector of filenames or a list of XMLs for downloaded EOL
+#' pages
+#' @param output Detail will return a data frame with common names and their
+#' language; counts will return a dataframe with each taxon and language counts
+#' for common names.
+#' @return Returns a data frame with taxon, eol ID, common name, and language.
+#' @seealso \code{\link{GetRichnessScores}} \code{\link{GetIUCNStat}}
+#' \code{\link{GetReferences}} \code{\link{DataObjectOverview}}
+#' @examples
+#' 
+#' data(MyEOLs)
+#' 
+#' GetCommonNames(MyEOLs[1], "d")
+#' 
+#' \dontrun{GetCommonNames(MyEOLs, output="detail")}
+#' \dontrun{GetCommonNames(MyEOLs, "c")}
+#' 
+#' @export GetCommonNames
 GetCommonNames <- function(MyEOLs, output=c("detail", "counts")) {
   MyEOLs <- RemoveNAFiles(MyEOLs)
   output <- match.arg(output)

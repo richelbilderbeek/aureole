@@ -1,3 +1,21 @@
+#' Gather IUCN Status for EOL Pages
+#' 
+#' This function gathers IUCN threat statuses from EOL pages if they are
+#' reported.
+#' 
+#' 
+#' @param MyEOLs A vector of filenames or a list of XMLs for downloaded EOL
+#' pages
+#' @return Returns a data frame with taxon, eol ID, and IUCN status.
+#' @seealso \code{\link{GetRichnessScores}} \code{\link{GetCommonNames}}
+#' \code{\link{GetReferences}} \code{\link{DataObjectOverview}}
+#' @examples
+#' 
+#' data(MyEOLs)
+#' \dontrun{GetIUCNStat(MyEOLs)}
+#' GetIUCNStat(MyEOLs[3])
+#' 
+#' @export GetIUCNStat
 GetIUCNStat <- function(MyEOLs) {
   MyEOLs <- RemoveNAFiles(MyEOLs)
   IUCN <- matrix(ncol=3, nrow=length(MyEOLs))
