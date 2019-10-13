@@ -16,7 +16,10 @@
 #' expect_true("link" %in% names(df))
 #' expect_true("content" %in% names(df))
 #' @export
-get_eol_page <- function(species_name, use_exact_name = TRUE, verbose = FALSE) {
+get_eol_page <- function(
+  species_name,
+  use_exact_name = TRUE,
+  verbose = FALSE) {
 
   url <- get_eol_url(species_name = species_name, use_exact_name = use_exact_name)
   eol_xml <- RCurl::getURL(url)
@@ -49,6 +52,7 @@ get_eol_page <- function(species_name, use_exact_name = TRUE, verbose = FALSE) {
 
   # There may be more results that the maximally displayed per page
   # For now, I only read the results of the first page
+  n_results <- min(n_results, items_per_page)
   testit::assert(n_results >= length(eol_results))
   testit::assert("result" == names(eol_results))
 
