@@ -5,6 +5,10 @@ Branch    |[![Travis CI logo](pics/TravisCI.png)](https://travis-ci.org)        
 `master`  |[![Build Status](https://travis-ci.org/richelbilderbeek/reol.svg?branch=master)](https://travis-ci.org/richelbilderbeek/reol)  |[![Build status](https://ci.appveyor.com/api/projects/status/btobovn91rhf0qm1/branch/master?svg=true)](https://ci.appveyor.com/project/richelbilderbeek/reol/branch/master)    |[![codecov.io](https://codecov.io/github/richelbilderbeek/reol/coverage.svg?branch=master)](https://codecov.io/github/richelbilderbeek/reol?branch=master)
 `develop` |[![Build Status](https://travis-ci.org/richelbilderbeek/reol.svg?branch=develop)](https://travis-ci.org/richelbilderbeek/reol) |[![Build status](https://ci.appveyor.com/api/projects/status/btobovn91rhf0qm1/branch/develop?svg=true)](https://ci.appveyor.com/project/richelbilderbeek/reol/branch/develop)  |[![codecov.io](https://codecov.io/github/richelbilderbeek/reol/coverage.svg?branch=develop)](https://codecov.io/github/richelbilderbeek/reol?branch=develop)
 
+R package to query the Encyclopedia Of Life.
+
+Will be renamed to `aureole` soon. 
+
 ## Install
 
 ```
