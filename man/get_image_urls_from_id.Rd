@@ -7,6 +7,9 @@ for that species}
 \usage{
 get_image_urls_from_id(species_id)
 }
+\arguments{
+\item{species_id}{the Encyclopedia Of Life species ID}
+}
 \value{
 a URL if there is a URL, an empty string otherwise
 }

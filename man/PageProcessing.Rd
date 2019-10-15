@@ -5,16 +5,14 @@
 \alias{RemoveNAFiles}
 \title{Process XML Data into tree format}
 \usage{
-PageProcessing(MyEOL, ...)
+PageProcessing(MyEOL)
 
-PageProcessing(MyEOL, ...)
+PageProcessing(MyEOL)
 }
 \arguments{
 \item{MyEOL}{A filename or R object for downloaded EOL pages}
 
 \item{MyEOL}{A filename or R object for downloaded EOL pages}
-
-\item{MyFiles}{A vector of filenames or R objects for EOL or Hier pages}
 }
 \value{
 an XML tree as an R object.

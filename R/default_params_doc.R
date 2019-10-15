@@ -1,5 +1,6 @@
 #' This function does nothing. It is intended to inherit is parameters'
 #' documentation.
+#' @param species_id the Encyclopedia Of Life species ID
 #' @param species_name name of a species
 #' @param use_exact_name do use the exact name
 #' @param verbose give more output
@@ -9,6 +10,7 @@
 #'   functions to find the documentation parameters
 #'
 default_params_doc <- function(
+  species_id,
   species_name,
   use_exact_name,
   verbose

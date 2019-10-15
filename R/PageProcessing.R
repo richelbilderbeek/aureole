@@ -6,7 +6,6 @@
 #'
 #' @aliases PageProcessing RemoveNAFiles
 #' @param MyEOL A filename or R object for downloaded EOL pages
-#' @param MyFiles A vector of filenames or R objects for EOL or Hier pages
 #' @return \code{PageProcessing} returns XML tree as an R object.
 #' \code{RemoveNAFiles} is an internal function that will take a vector of
 #' filenames and check to make sure they all have data associated (sometimes
@@ -23,7 +22,7 @@
 #'
 #'
 #' @export PageProcessing
-PageProcessing <- function(MyEOL, ...) {
+PageProcessing <- function(MyEOL) {
   if(class(MyEOL) == "character" || class(MyEOL) == "vector") {
     res <- XML::xmlToList(
       XML::xmlRoot(

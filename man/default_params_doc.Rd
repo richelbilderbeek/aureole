@@ -5,9 +5,11 @@
 \title{This function does nothing. It is intended to inherit is parameters'
 documentation.}
 \usage{
-default_params_doc(species_name, use_exact_name, verbose)
+default_params_doc(species_id, species_name, use_exact_name, verbose)
 }
 \arguments{
+\item{species_id}{the Encyclopedia Of Life species ID}
+
 \item{species_name}{name of a species}
 
 \item{use_exact_name}{do use the exact name}
