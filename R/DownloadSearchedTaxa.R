@@ -96,7 +96,6 @@ MatchTaxatoEOLID <- function(ListOfTaxa, exact = TRUE){
 #' profile.
 #'
 #' @aliases DownloadEOLpages DownloadSearchedTaxa
-#' @param pages EOL page numbers to download
 #' @param to.file Whether to download data to a file
 #' @param MyKey An optional user identification key to identify yourself to EOL
 #' @param verbose An optional print statement during download

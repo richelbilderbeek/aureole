@@ -6,6 +6,11 @@
 \usage{
 get_eol_url(species_name, use_exact_name = TRUE)
 }
+\arguments{
+\item{species_name}{name of a species}
+
+\item{use_exact_name}{do use the exact name}
+}
 \description{
 Get the Encyclopedia of Life URL for requesting a species
 }

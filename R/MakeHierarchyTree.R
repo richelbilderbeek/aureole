@@ -184,8 +184,6 @@ AutofillTaxonNames <- function(TreeData){
 #' NodeLabelList MergeTaxonomies
 #' @param MyHiers A vector of filenames or a list of XMLs for downloaded EOL
 #' pages
-#' @param TreeData A dataframe of taxonomic hierarchy information out of
-#' MakeTreeData function
 #' @param missingData If tip taxa are not all the same taxonomic rank, should
 #' Reol cleave out taxa or hierarchical rank first
 #' @param includeNodeLabels Option to write node labels to phylogenetic tree
@@ -194,10 +192,6 @@ AutofillTaxonNames <- function(TreeData){
 #' pattern to make a tree.  This will define which ranked classifications to
 #' include in the final tree.  If left NULL, it will try to keep as much
 #' information as possible.
-#' @param Taxon Taxonomic group that contains subunits
-#' @param label Which hierarchical units should be included in the node labels
-#' @param i A Hierarchical Taxonomy (ex: Kingdom, Class, Species)
-#' @param j A Hierarchical Taxonomy (ex: Class, Genus, Species)
 #' @return \code{MakeTreeData} returns a data frame with data for use in
 #' \code{MakeHierarchyTree} function, but can also be used independently to
 #' examine the hierarchical structure. \code{AutofillTaxonNames} is an internal
@@ -216,7 +210,7 @@ AutofillTaxonNames <- function(TreeData){
 #' @seealso \code{\link{ProviderCount}} \code{\link{DownloadHierarchy}}
 #' \code{\link{MakeEdgeLabels}}
 #' @examples
-#'
+#' if (1 == 2) {
 #' data(MyHiers)
 #' TreeData <- MakeTreeData(MyHiers)
 #' Tree <- MakeHierarchyTree(MyHiers, includeNodeLabels=TRUE)
@@ -225,8 +219,7 @@ AutofillTaxonNames <- function(TreeData){
 #'
 #' plot(Tree, "c", show.node.label=TRUE, adj=0.5, font=3, edge.color="gray",
 #' 	tip.color=rainbow(10))
-#'
-#'
+#' }
 #' @export MakeHierarchyTree
 MakeHierarchyTree <- function(MyHiers, missingData=NULL, includeNodeLabels=TRUE, userRanks=NULL) {
   TreeData <- MakeTreeData(MyHiers)

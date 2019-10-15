@@ -22,14 +22,6 @@ Reol cleave out taxa or hierarchical rank first}
 
 \item{duplicateEdgeLabels}{Choice of which edge label to prefer: recent,
 oldest, or combined}
-
-\item{phy}{A tree in the class phylo}
-
-\item{node}{Any node number in the tree}
-
-\item{taxa}{Vector of tip taxa}
-
-\item{edgeLabels}{Vector of edge labels with the same associated branch}
 }
 \value{
 \code{MakeEdgeLabels} returns a vector of edges and their clade
@@ -58,15 +50,15 @@ choose to combine the names so that you can see all of them
 library(ape)
 data(MyHiers)
 Tree <- MakeHierarchyTree(MyHiers, includeNodeLabels=FALSE)
-edges <- MakeEdgeLabels(MyHiers)	
+edges <- MakeEdgeLabels(MyHiers)
 plot(Tree, show.node.label=FALSE)
-edgelabels(text=names(edges), edge=edges)  
+edgelabels(text=names(edges), edge=edges)
 
 
 \dontrun{
 edges <- MakeEdgeLabels(MyHiers, missingData="pruneTaxa", duplicateEdgeLabels="recent")
 plot(Tree, show.node.label=FALSE)
-edgelabels(text=names(edges), edge=edges)  
+edgelabels(text=names(edges), edge=edges)
 }
 
 }

@@ -31,3 +31,6 @@ This is for building the data table on eoldata.org.
 	CollectDataforWeb(MyEOLs[1])
 
 }
+\author{
+Barb Banbury, Brian O'Meara
+}

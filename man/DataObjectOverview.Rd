@@ -13,8 +13,6 @@ DataObjectOverview(MyEOLs, verbose = TRUE)
 pages}
 
 \item{verbose}{An optional print statement while combining}
-
-\item{MyEOL}{A single EOL file or R object}
 }
 \value{
 \code{GatherDataObjectInformation} will return information from one

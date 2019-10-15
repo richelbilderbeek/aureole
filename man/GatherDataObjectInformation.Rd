@@ -8,11 +8,6 @@ GatherDataObjectInformation(MyEOL)
 }
 \arguments{
 \item{MyEOL}{A single EOL file or R object}
-
-\item{MyEOLs}{A vector of filenames or a list of
-XMLs for downloaded EOL pages}
-
-\item{verbose}{An optional print statement while combining}
 }
 \value{
 \code{GatherDataObjectInformation} will return

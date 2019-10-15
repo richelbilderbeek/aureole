@@ -1,4 +1,5 @@
 #' Get the Encyclopedia of Life URL for requesting a species
+#' @inheritParams default_params_doc
 #' @export
 get_eol_url <- function(
   species_name,

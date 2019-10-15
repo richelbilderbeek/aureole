@@ -9,8 +9,6 @@ TaxonChildren(MyHiers)
 }
 \arguments{
 \item{MyHiers}{A vector or single filename for downloaded hierarchy pages}
-
-\item{MyHier}{A single filename for downloaded hierarchy pages}
 }
 \value{
 \code{TaxonChildren} will report the primary offspring of a taxon if

@@ -2,7 +2,6 @@
 #'
 #' This function will read in the XML data and parse it into a tree structure for R to read.
 #' @param MyEOL A filename or R object for downloaded EOL pages
-#' @param MyFiles A vector of filenames or R objects for EOL or Hier pages
 #' @return an XML tree as an R object.
 #' @note \code{RemoveNAFiles} is an internal function
 #' that will take a vector of filenames
@@ -19,6 +18,7 @@
 #' PageProcessing(MyEOLs[1])#'
 #' @aliases PageProcessing
 #' @aliases RemoveNAFiles
+#' @author Barb Banbury, Brian O'Meara
 PageProcessing <- function(MyEOL) {
   res <- XML::xmlToList(
     XML::xmlRoot(
@@ -29,13 +29,16 @@ PageProcessing <- function(MyEOL) {
     ),
     simplify = FALSE
   )
-  if(!is.null(res$error)) {
+  if (!is.null(res$error)) {
     system(paste("mv", MyEOL, "../TRASH/"))
     stop(paste("Bad file", MyEOL, "has been purged"))
   }
   return(res)
 }
 
+#' Do something
+#' @param name something
+#' @author Barb Banbury, Brian O'Meara
 FirstTwo <- function(name) {
   if(is.null(name))
     name <- NA
@@ -46,9 +49,9 @@ FirstTwo <- function(name) {
   return(name)
 }
 
-
-
-#common names counts
+#' Common names counts
+#' @param res something
+#' @author Barb Banbury, Brian O'Meara
 CNCount <- function(res) {
   whichCNs <- which(names(res$taxonConcept) == "commonName")
   languages <- NULL
@@ -62,7 +65,9 @@ CNCount <- function(res) {
   return(c(length(unique(languages)), paste(langCounts, collapse="_")))
 }
 
-#data object counts
+#' Data object counts
+#' @param res something
+#' @author Barb Banbury, Brian O'Meara
 DOCount <- function(res) {
   whichDOs <- which(names(res) == "dataObject")
   dataTypes <- NULL
@@ -81,7 +86,9 @@ DOCount <- function(res) {
   return(c(length(unique(dataTypes)), paste(typeCounts, collapse="_"), IUCNstat))
 }
 
-#provider numbers
+#' Provider numbers
+#' @param res something
+#' @author Barb Banbury, Brian O'Meara
 providerCount <- function(res) {
   whichProviders <- which(names(res$taxonConcept$additionalInformation) == "taxon")
   providerTypes <- NULL
@@ -95,7 +102,10 @@ providerCount <- function(res) {
 }
 
 
-#gather vector of information
+#' Do something
+#' @param res something
+#' @param do.higher.taxonomy somethinf
+#' @author Barb Banbury, Brian O'Meara
 DataProcessing <- function(res, do.higher.taxonomy) {
   if(!is.null(res$taxonConcept)) {
     taxonData <- c(FirstTwo(res$taxonConcept$ScientificName), res$taxonConcept$ScientificName, res$taxonConcept$taxonConceptID)
@@ -116,10 +126,6 @@ DataProcessing <- function(res, do.higher.taxonomy) {
   return(matrix(c(taxonData, richness, refCounts, CNs, providers , DOs, pageLength, higher.taxonomy), nrow=1))
 }
 
-
-
-
-
 #' Collect Data from EOL Pages for Website
 #'
 #' These functions will read and scrape content off the downloaded EOL pages.
@@ -138,6 +144,7 @@ DataProcessing <- function(res, do.higher.taxonomy) {
 #' 	CollectDataforWeb(MyEOLs[1])
 #'
 #' @export CollectDataforWeb
+#' @author Barb Banbury, Brian O'Meara
 CollectDataforWeb <- function(MyEOL, do.higher.taxonomy=FALSE) {
 #  higher.taxonomy<-""
 #  if(do.higher.taxonomy) {
@@ -146,15 +153,3 @@ CollectDataforWeb <- function(MyEOL, do.higher.taxonomy=FALSE) {
   res <- PageProcessing(MyEOL)
   return(DataProcessing(res, do.higher.taxonomy))
 }
-
-
-
-
-
-
-
-
-
-
-
-

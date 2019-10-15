@@ -4,7 +4,10 @@
 \alias{get_eol_pages}
 \title{Get the Encyclopedia Of Life pages for multiple taxa}
 \usage{
-get_eol_pages(taxon_names)
+get_eol_pages(species_name)
+}
+\arguments{
+\item{species_name}{name of a species}
 }
 \value{
 a list with as much elements as taxon names. Each

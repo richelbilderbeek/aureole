@@ -12,10 +12,6 @@ MatchHierPageToEOLdata(MyHiers, EOLdata)
 list of XML data stored as an R object}
 
 \item{EOLdata}{Any output dataframe from Reol functions}
-
-\item{Tree}{Taxonomic tree in the class phylo}
-
-\item{Data}{Data output from one of the EOL or Hierarchy gathering functions}
 }
 \value{
 \code{MatchHierPageToEOLdata} returns a data frame where each row is
@@ -37,7 +33,7 @@ taxonomic tree tips.
 	\dontrun{data(MyEOLs)
 	 library(ape)
      data(MyHiers)
-     Tree <- MakeHierarchyTree(MyHiers, includeNodeLabels=FALSE)  
+     Tree <- MakeHierarchyTree(MyHiers, includeNodeLabels=FALSE)
      MyData <- MatchHierPageToEOLdata(MyHiers, GetRichnessScores(MyEOLs))
      plot(Tree, label.offset=1, x.lim=10)
      tiplabels(round(as.numeric(MyData[,3])), 1:6, col="Blue", frame="none",

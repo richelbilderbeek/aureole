@@ -12,8 +12,6 @@ PageProcessing(MyEOL, ...)
 \arguments{
 \item{MyEOL}{A filename or R object for downloaded EOL pages}
 
-\item{MyFiles}{A vector of filenames or R objects for EOL or Hier pages}
-
 \item{MyEOL}{A filename or R object for downloaded EOL pages}
 
 \item{MyFiles}{A vector of filenames or R objects for EOL or Hier pages}
@@ -57,4 +55,7 @@ PageProcessing(MyEOLs[1])#'
 	PageProcessing(MyEOLs[1])
 
 
+}
+\author{
+Barb Banbury, Brian O'Meara
 }

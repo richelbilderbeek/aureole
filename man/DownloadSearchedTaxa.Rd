@@ -18,8 +18,6 @@ DownloadSearchedTaxa(ListOfTaxa, to.file = TRUE, MyKey = NULL,
 \item{exact}{Should taxon name match exactly in EOL or fuzzy match}
 
 \item{verbose}{An optional print statement during download}
-
-\item{pages}{EOL page numbers to download}
 }
 \value{
 Either an XML file(s) downloaded to working directory or as an R

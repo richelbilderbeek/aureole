@@ -26,17 +26,6 @@ Reol cleave out taxa or hierarchical rank first}
 pattern to make a tree.  This will define which ranked classifications to
 include in the final tree.  If left NULL, it will try to keep as much
 information as possible.}
-
-\item{TreeData}{A dataframe of taxonomic hierarchy information out of
-MakeTreeData function}
-
-\item{Taxon}{Taxonomic group that contains subunits}
-
-\item{label}{Which hierarchical units should be included in the node labels}
-
-\item{i}{A Hierarchical Taxonomy (ex: Kingdom, Class, Species)}
-
-\item{j}{A Hierarchical Taxonomy (ex: Class, Genus, Species)}
 }
 \value{
 \code{MakeTreeData} returns a data frame with data for use in
@@ -66,7 +55,7 @@ information, if errors or no tree is returned it is likely that information
 is missing and you may have to use another provider.
 }
 \examples{
-
+if (1 == 2) {
 data(MyHiers)
 TreeData <- MakeTreeData(MyHiers)
 Tree <- MakeHierarchyTree(MyHiers, includeNodeLabels=TRUE)
@@ -75,8 +64,7 @@ plot(Tree, show.node.label=TRUE)
 
 plot(Tree, "c", show.node.label=TRUE, adj=0.5, font=3, edge.color="gray",
 	tip.color=rainbow(10))
-
-
+}
 }
 \seealso{
 \code{\link{ProviderCount}} \code{\link{DownloadHierarchy}}

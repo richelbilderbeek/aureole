@@ -17,7 +17,7 @@ whichEdge <- function(phy, taxa) {
       leaves <- node.leaves(phy, i)
       if(all(leaves %in% taxa) && all(taxa %in% leaves)){
         foundBranch <- TRUE
-        return(as.numeric(i))  
+        return(as.numeric(i))
       }
     }
     nodes <- tipList[which(tipList[,2] %in% nodes), 1]
@@ -56,9 +56,9 @@ WhatToDoWithDuplicateEdgeNames <- function(edgeLabels, duplicateEdgeLabels){
 
 
 #' Creates Edge Labels for Hierarchy Trees
-#' 
+#'
 #' These functions will create edge labels for hierarchy trees.
-#' 
+#'
 #' Note that edges are slightly different than node labels, in that edges are
 #' plotted along the center of the branch rather than at a node.  Plotting both
 #' is redundant, but one or the other may look better aesthetically.  Also
@@ -70,14 +70,10 @@ WhatToDoWithDuplicateEdgeNames <- function(edgeLabels, duplicateEdgeLabels){
 #' (genus in the camel example) or the oldest (family in camels), or you can
 #' choose to combine the names so that you can see all of them
 #' (Camilidae.Camelus).
-#' 
+#'
 #' @aliases MakeEdgeLabels node.leaves node.offspring getTipList
 #' WhatToDoWithDuplicateEdgeNames whichEdge
-#' @param phy A tree in the class phylo
-#' @param node Any node number in the tree
 #' @param MyHiers A vector of hier pages OR a list of XMLs as an R object
-#' @param taxa Vector of tip taxa
-#' @param edgeLabels Vector of edge labels with the same associated branch
 #' @param duplicateEdgeLabels Choice of which edge label to prefer: recent,
 #' oldest, or combined
 #' @param missingData If tip taxa are not all the same taxonomic rank, should
@@ -89,23 +85,28 @@ WhatToDoWithDuplicateEdgeNames <- function(edgeLabels, duplicateEdgeLabels){
 #' functions for \code{MakeEdgeLabel}.
 #' @seealso \code{\link{MakeHierarchyTree}}
 #' @examples
-#' 
+#'
 #' library(ape)
 #' data(MyHiers)
 #' Tree <- MakeHierarchyTree(MyHiers, includeNodeLabels=FALSE)
-#' edges <- MakeEdgeLabels(MyHiers)	
+#' edges <- MakeEdgeLabels(MyHiers)
 #' plot(Tree, show.node.label=FALSE)
-#' edgelabels(text=names(edges), edge=edges)  
-#' 
-#' 
+#' edgelabels(text=names(edges), edge=edges)
+#'
+#'
 #' \dontrun{
 #' edges <- MakeEdgeLabels(MyHiers, missingData="pruneTaxa", duplicateEdgeLabels="recent")
 #' plot(Tree, show.node.label=FALSE)
-#' edgelabels(text=names(edges), edge=edges)  
+#' edgelabels(text=names(edges), edge=edges)
 #' }
-#' 
+#'
 #' @export MakeEdgeLabels
-MakeEdgeLabels <- function(MyHiers, label="all", missingData=NULL, duplicateEdgeLabels="oldest"){
+MakeEdgeLabels <- function(
+  MyHiers,
+  label="all",
+  missingData = NULL,
+  duplicateEdgeLabels = "oldest"
+) {
   MyHiers <- RemoveNAFiles(MyHiers)
   nodeList <- NodeLabelList(MyHiers, label="all", missingData=missingData)
   if(length(nodeList) == 0)
@@ -114,7 +115,7 @@ MakeEdgeLabels <- function(MyHiers, label="all", missingData=NULL, duplicateEdge
   tipList <- getTipList(phy)
   edges <- c(lapply(nodeList, whichEdge, phy=phy), recursive=T)
   if(any(duplicated(names(edges))))
-    edges <- edges[-which(duplicated(names(edges)))]  
+    edges <- edges[-which(duplicated(names(edges)))]
   if(any(duplicated(edges))){
     for(i in unique(edges[which(duplicated(edges))])){
       duplicateEdges <- edges[which(edges == i)]

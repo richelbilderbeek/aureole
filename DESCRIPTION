@@ -5,6 +5,7 @@ Author: Barb Banbury <darwinthesun@gmail.com>, Brian O'Meara <bomeara@utk.edu>, 
 Maintainer: Richel J.C. Bilderbeek <richel@richelbilderbeek.nl>
 Imports: 
     ape,
+    curl,
     RCurl,
     XML
 Suggests: 

@@ -7,9 +7,6 @@
 #' @aliases CombineDataObjectInformation
 #' @aliases DataObjectOverview
 #' @param MyEOL A single EOL file or R object
-#' @param MyEOLs A vector of filenames or a list of
-#'   XMLs for downloaded EOL pages
-#' @param verbose An optional print statement while combining
 #' @return \code{GatherDataObjectInformation} will return
 #' information from one single EOL file all of the data objects
 #' and their associated accession info.
@@ -120,7 +117,6 @@ CombineDataObjectInformation <- function(MyEOLs, verbose=TRUE) {
 #'
 #' @aliases GatherDataObjectInformation CombineDataObjectInformation
 #' DataObjectOverview
-#' @param MyEOL A single EOL file or R object
 #' @param MyEOLs A vector of filenames or a list of XMLs for downloaded EOL
 #' pages
 #' @param verbose An optional print statement while combining
