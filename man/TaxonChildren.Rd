@@ -20,7 +20,7 @@ This function goes through the hierarchy pages to collect taxonomic
 offspring and parantage.
 }
 \examples{
-
+if (1 == 2) {
 
 #simple example using Reol data:
 data(MyHiers)
@@ -45,9 +45,7 @@ repdbAnolis <- DownloadHierarchy(eolAnolis, to.file=FALSE, database="The Reptile
      Database")
 TaxonChildren(repdbAnolis)
 }
-
-
-
+}
 }
 \seealso{
 \code{\link{MakeTreeData}}

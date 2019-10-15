@@ -11,7 +11,7 @@
 #' return the list of taxonomic parentage.
 #' @seealso \code{\link{MakeTreeData}}
 #' @examples
-#'
+#' if (1 == 2) {
 #'
 #' #simple example using Reol data:
 #' data(MyHiers)
@@ -36,9 +36,7 @@
 #'      Database")
 #' TaxonChildren(repdbAnolis)
 #' }
-#'
-#'
-#'
+#' }
 #' @export TaxonChildren
 TaxonChildren <- function (MyHiers){
   MyHiers <- RemoveNAFiles(MyHiers)
