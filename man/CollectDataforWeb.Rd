@@ -15,8 +15,6 @@ CollectDataforWeb(MyEOL, do.higher.taxonomy = FALSE)
 
 \item{do.higher.taxonomy}{TRUE/FALSE on whether to download higher level
 taxonomy}
-
-\item{res}{XML object}
 }
 \value{
 Appends EOL data to a table.

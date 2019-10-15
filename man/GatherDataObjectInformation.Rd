@@ -22,6 +22,7 @@ objects. For example, it will tell you that there are 3 gifs, 12 jpgs, and
 34 text objects.
 }
 \examples{
+if (1 == 2) {
 data(MyEOLs)
 DataObjectOverview(MyEOLs[1], verbose=FALSE)
 \dontrun{DataObjectOverview(MyEOLs, verbose=FALSE)}
@@ -38,6 +39,7 @@ DataObjectOverview(MyEOLs[1], verbose=FALSE)
   text <- which(which(DOI$mimeType == "text/html") \%in\% which(DOI$language ==
     "en"))
   DOI$description[text]
+}
 }
 }
 \seealso{

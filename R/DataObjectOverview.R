@@ -15,6 +15,7 @@
 #' @seealso \link{GetRichnessScores}, \link{GetCommonNames},
 #'   \link{GetIUCNStat}, \link{GetReferences}
 #' @examples
+#' if (1 == 2) {
 #' data(MyEOLs)
 #' DataObjectOverview(MyEOLs[1], verbose=FALSE)
 #' \dontrun{DataObjectOverview(MyEOLs, verbose=FALSE)}
@@ -32,6 +33,7 @@
 #'   text <- which(which(DOI$mimeType == "text/html") %in% which(DOI$language ==
 #'     "en"))
 #'   DOI$description[text]
+#' }
 #' }
 GatherDataObjectInformation <- function(MyEOL) {
   #this function works for one EOL file only.  It will return information about all of the different data objects associated with each taxon.
@@ -130,7 +132,7 @@ CombineDataObjectInformation <- function(MyEOLs, verbose=TRUE) {
 #' @seealso \code{\link{GetRichnessScores}} \code{\link{GetCommonNames}}
 #' \code{\link{GetIUCNStat}} \code{\link{GetReferences}}
 #' @examples
-#'
+#' if (1 == 2) {
 #' data(MyEOLs)
 #' DataObjectOverview(MyEOLs[1], verbose=FALSE)
 #' \dontrun{DataObjectOverview(MyEOLs, verbose=FALSE)}
@@ -149,7 +151,7 @@ CombineDataObjectInformation <- function(MyEOLs, verbose=TRUE) {
 #'     "en"))
 #'   DOI$description[text]
 #' }
-#'
+#' }
 #' @export DataObjectOverview
 DataObjectOverview <- function(MyEOLs, verbose=TRUE){
   MyEOLs <- RemoveNAFiles(MyEOLs)

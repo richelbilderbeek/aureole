@@ -40,12 +40,14 @@ will be empty and contain no information).
 If they are empty, they are cleaved from the analysis.
 }
 \examples{
+if (1 == 2) {
 # Reads in a file
 PageProcessing("eol1.xml")
 
 # or reads in an R object
 data(MyEOLs)
-PageProcessing(MyEOLs[1])#'
+PageProcessing(MyEOLs[1])
+}
 
 	#Reads in a file
 	#PageProcessing("eol1.xml")
