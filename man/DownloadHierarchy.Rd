@@ -37,7 +37,7 @@ etc.  Some providers only contribute certain kinds of information; for
 example not all will provide synonyms or taxonomic hierarchy information.
 }
 \examples{
-
+if (1 == 2) {
 data(MyEOLs)
 \dontrun{ProviderCount(MyEOLs[6], verbose=TRUE)
 BestProvider(MyEOLs[6])}
@@ -48,9 +48,7 @@ DownloadHierarchy(MyEOLs[6], FALSE, database="NCBI Taxonomy")
 
 #Or download from a specific provider
 \dontrun{MyHiers <- DownloadHierarchy(MyEOLs, FALSE, database="NCBI Taxonomy")}
-
-
-
+}
 }
 \seealso{
 \code{\link{DownloadEOLpages}} \code{\link{DownloadSearchedTaxa}}

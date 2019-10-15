@@ -45,7 +45,7 @@ BestProvider <- function(MyEOLs) {
 #' (to.file=TRUE) or as a single R object as a list (to.file=FALSE).
 #' @seealso \code{\link{DownloadEOLpages}} \code{\link{DownloadSearchedTaxa}}
 #' @examples
-#'
+#' if (1 == 2) {
 #' data(MyEOLs)
 #' \dontrun{ProviderCount(MyEOLs[6], verbose=TRUE)
 #' BestProvider(MyEOLs[6])}
@@ -56,9 +56,7 @@ BestProvider <- function(MyEOLs) {
 #'
 #' #Or download from a specific provider
 #' \dontrun{MyHiers <- DownloadHierarchy(MyEOLs, FALSE, database="NCBI Taxonomy")}
-#'
-#'
-#'
+#' }
 #' @export DownloadHierarchy
 DownloadHierarchy <- function(
   MyEOLs,
