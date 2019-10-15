@@ -17,8 +17,6 @@ DownloadHierarchy(MyEOLs, to.file = TRUE, database = NULL,
 \item{database}{Provider hierarchy information to use}
 
 \item{verbose}{An optional print statement during download}
-
-\item{...}{further arguments to be passed to \code{DownloadHierarchy}}
 }
 \value{
 \code{ProviderCount} will give a named vector back of all of the
@@ -44,10 +42,10 @@ data(MyEOLs)
 \dontrun{ProviderCount(MyEOLs[6], verbose=TRUE)
 BestProvider(MyEOLs[6])}
 DownloadHierarchy(MyEOLs[6], FALSE, database="NCBI Taxonomy")
-	
+
 #Download data from whichever provider has the most coverage
 \dontrun{MyHiers <- DownloadHierarchy(MyEOLs, to.file=TRUE, BestProvider(MyEOLs))}
-	
+
 #Or download from a specific provider
 \dontrun{MyHiers <- DownloadHierarchy(MyEOLs, FALSE, database="NCBI Taxonomy")}
 

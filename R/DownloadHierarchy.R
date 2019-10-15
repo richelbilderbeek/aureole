@@ -21,21 +21,20 @@ BestProvider <- function(MyEOLs) {
 
 
 #' Download Hierarchy Content From Contributors
-#' 
+#'
 #' This function will use the EOL pages to find the provider information (ie
 #' which providers contribute information to the pages).  Hierarchies get
 #' downloaded as hier pages rather than eol pages. Providers contribute
 #' information on taxonomic rankings, hierarchical tree structure, synonyms,
 #' etc.  Some providers only contribute certain kinds of information; for
 #' example not all will provide synonyms or taxonomic hierarchy information.
-#' 
-#' 
+#'
+#'
 #' @aliases DownloadHierarchy ProviderCount BestProvider
 #' @param MyEOLs A vector of filenames for downloaded EOL pages
 #' @param to.file Whether to download data to a file
 #' @param database Provider hierarchy information to use
 #' @param verbose An optional print statement during download
-#' @param ... further arguments to be passed to \code{DownloadHierarchy}
 #' @return \code{ProviderCount} will give a named vector back of all of the
 #' providers that contribute to the set of MyEOLs taxa, and the number of taxa
 #' they contribute.  The maximum number of species a provider can contribute
@@ -46,20 +45,20 @@ BestProvider <- function(MyEOLs) {
 #' (to.file=TRUE) or as a single R object as a list (to.file=FALSE).
 #' @seealso \code{\link{DownloadEOLpages}} \code{\link{DownloadSearchedTaxa}}
 #' @examples
-#' 
+#'
 #' data(MyEOLs)
 #' \dontrun{ProviderCount(MyEOLs[6], verbose=TRUE)
 #' BestProvider(MyEOLs[6])}
 #' DownloadHierarchy(MyEOLs[6], FALSE, database="NCBI Taxonomy")
-#' 	
+#'
 #' #Download data from whichever provider has the most coverage
 #' \dontrun{MyHiers <- DownloadHierarchy(MyEOLs, to.file=TRUE, BestProvider(MyEOLs))}
-#' 	
+#'
 #' #Or download from a specific provider
 #' \dontrun{MyHiers <- DownloadHierarchy(MyEOLs, FALSE, database="NCBI Taxonomy")}
-#' 
-#' 
-#' 
+#'
+#'
+#'
 #' @export DownloadHierarchy
 DownloadHierarchy <- function(
   MyEOLs,

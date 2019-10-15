@@ -1,9 +1,9 @@
 #' Subset Data For Hier Trees
-#' 
+#'
 #' This internal function removes repeat taxonomic units, undefined clades, and
 #' NAs from hierarchy information.
-#' 
-#' 
+#'
+#'
 #' @param oneFileHier A dataframe of taxonomic hierarchy information out of
 #' OneFileHierarchy function
 #' @param HierID Hierarchy ID value of interest
@@ -13,7 +13,7 @@
 subsetDataForHierTrees <- function(oneFileHier, HierID) {
   oneFileHier <- matrix(oneFileHier[1:which(oneFileHier[,6] == HierID),], ncol=7)  #stop at HierID to avoid taking children
   oneFileHier  <- matrix(oneFileHier[which(!duplicated(oneFileHier[,2])),], ncol=7) #delete repeats
-  oneFileHier  <- matrix(oneFileHier[!is.na(oneFileHier[,2]),], ncol=7) #delete NAs; ncol is hard coded to be 7 columns so that R doesn't convert to a vector when there is a single row.  
+  oneFileHier  <- matrix(oneFileHier[!is.na(oneFileHier[,2]),], ncol=7) #delete NAs; ncol is hard coded to be 7 columns so that R doesn't convert to a vector when there is a single row.
   if(any(oneFileHier[,2] == "unranked clade"))
     oneFileHier  <- oneFileHier[-which(oneFileHier[,2] == "unranked clade"),] #delete unranked
   return(oneFileHier)
@@ -21,7 +21,7 @@ subsetDataForHierTrees <- function(oneFileHier, HierID) {
 
 MergeTaxonomies <- function(i, j) {
   combined <- i
-  `%ni%` = Negate(`%in%`) 
+  `%ni%` = Negate(`%in%`)
   outlier.pos <- which(j %ni% i)
   for (outlier.index in sequence(length(outlier.pos))) {
     if (outlier.pos[outlier.index] == 1) {
@@ -30,7 +30,7 @@ MergeTaxonomies <- function(i, j) {
     }
     previous.pos <- which(grepl(j[outlier.pos[outlier.index] - 1], combined))[1]
     if ((previous.pos+1) <= length(combined))
-      combined <- c(combined[1:previous.pos], j[outlier.pos[outlier.index]], combined[(previous.pos+1): length(combined)]) 
+      combined <- c(combined[1:previous.pos], j[outlier.pos[outlier.index]], combined[(previous.pos+1): length(combined)])
     else
       combined <- c(combined[1:previous.pos], j[outlier.pos[outlier.index]])
   }
@@ -42,18 +42,18 @@ MergeTaxonomies <- function(i, j) {
 
 
 #' Combine Hierarchy Info
-#' 
+#'
 #' This function combines different hierarchy dataframes into one. Mostly an
 #' internal function for tree and edge label building.
-#' 
-#' 
+#'
+#'
 #' @param MyHiers A vector of hier pages to combine
 #' @return Returns a combined data frame.
 #' @examples
-#' 
+#'
 #' 	data(MyHiers)
 #' 	CombineHierarchyInfo(MyHiers)
-#' 
+#'
 #' @export CombineHierarchyInfo
 CombineHierarchyInfo <- function(MyHiers) {
   CombFiles <- matrix(nrow=0, ncol=7)
@@ -71,7 +71,7 @@ CombineHierarchyInfo <- function(MyHiers) {
         Tax <- oneFile[,2]
         MergedTax <- MergeTaxonomies(Tax, MergedTax)
         if(length(oneFile[,2]) > longestHierTaxon) {
-          longestHierTaxon <- max(longestHierTaxon, length(oneFile[,2]))    
+          longestHierTaxon <- max(longestHierTaxon, length(oneFile[,2]))
           CombFiles <- rbind(oneFile, CombFiles)  #puts longest hierarchies first in combined files
           CombFiles <- as.data.frame(CombFiles, stringsAsFactors=FALSE)
         }
@@ -99,14 +99,14 @@ MakeTreeData <- function(MyHiers) {
     }
   }
   return(TreeData)
-}  
+}
 
 
 
 
 
 #' Repeat Data To Drop
-#' 
+#'
 #' These internal functions determine columns or rows of data that are either
 #' all the same (thus providing no hierarchical information) or contain NAs.
 #' \code{DropADim} walks through the TreeData table and deletes either a row or
@@ -115,8 +115,8 @@ MakeTreeData <- function(MyHiers) {
 #' much data as possible.  Then \code{RepeatDataToDrop} will delete any columns
 #' of TreeData that have all the same information (these can not be used with
 #' ape tree plotting)
-#' 
-#' 
+#'
+#'
 #' @aliases RepeatDataToDrop DropADim
 #' @param TreeData A data frame from
 #' @return \code{DropADim} returns a new TreeData table with no NAs.
@@ -164,22 +164,22 @@ AutofillTaxonNames <- function(TreeData){
   }
   return(TreeData)
 }
-  
+
 
 
 
 
 
 #' Creates Hierarchical Trees
-#' 
+#'
 #' These functions will create a taxonomic tree (dendrogram) based on ranking
 #' from EOLs provider (hierarchy) pages.
-#' 
+#'
 #' This tree displays taxonomic structuring only and is not the result of a
 #' phylogenetic analysis. Alos note that not all providers return hierarchy
 #' information, if errors or no tree is returned it is likely that information
 #' is missing and you may have to use another provider.
-#' 
+#'
 #' @aliases MakeTreeData AutofillTaxonNames MakeHierarchyTree ReturnTaxSet
 #' NodeLabelList MergeTaxonomies
 #' @param MyHiers A vector of filenames or a list of XMLs for downloaded EOL
@@ -216,26 +216,26 @@ AutofillTaxonNames <- function(TreeData){
 #' @seealso \code{\link{ProviderCount}} \code{\link{DownloadHierarchy}}
 #' \code{\link{MakeEdgeLabels}}
 #' @examples
-#' 
+#'
 #' data(MyHiers)
 #' TreeData <- MakeTreeData(MyHiers)
 #' Tree <- MakeHierarchyTree(MyHiers, includeNodeLabels=TRUE)
 #' labels <- NodeLabelList(MyHiers, "all")
 #' plot(Tree, show.node.label=TRUE)
-#' 
+#'
 #' plot(Tree, "c", show.node.label=TRUE, adj=0.5, font=3, edge.color="gray",
 #' 	tip.color=rainbow(10))
-#' 
-#' 
+#'
+#'
 #' @export MakeHierarchyTree
 MakeHierarchyTree <- function(MyHiers, missingData=NULL, includeNodeLabels=TRUE, userRanks=NULL) {
   TreeData <- MakeTreeData(MyHiers)
   pattern <- paste("~", paste(colnames(TreeData), sep="", collapse="/"), sep="")
   if(!is.null(userRanks)){
     TreeData <- TreeData[,which(colnames(TreeData) %in% userRanks)]
-    TreeData <- AutofillTaxonNames(TreeData)   
+    TreeData <- AutofillTaxonNames(TreeData)
     #TreeData <- DropADim(TreeData)
-    pattern <- paste("~", paste(colnames(TreeData), sep="", collapse="/"), sep="")   
+    pattern <- paste("~", paste(colnames(TreeData), sep="", collapse="/"), sep="")
   }
   if(any(apply(TreeData, 2, RepeatDataToDrop))) {
     if(any(is.na(TreeData))){
@@ -257,11 +257,14 @@ MakeHierarchyTree <- function(MyHiers, missingData=NULL, includeNodeLabels=TRUE,
   }
   if(pattern == "~")
     stop("Error in Tree Building: try MakeTreeData(MyHiers) to see if there is hierarchical data associated with your files")
-  fo <- as.formula(pattern)
+  fo <- stats::as.formula(pattern)
   TreeData <- as.data.frame(apply(TreeData, 2, factor))
-  tree <- ladderize(as.phylo.formula(fo, data=TreeData))  
+  tree <- ape::ladderize(ape::as.phylo.formula(fo, data=TreeData))
   if(includeNodeLabels)
-    tree <- makeNodeLabel(tree, method="u", nodeList=NodeLabelList(MyHiers, "all", missingData=missingData), fixed=TRUE)  #maybe change this later when other options
+    tree <- ape::makeNodeLabel(
+      tree,
+      method = "u",
+      nodeList = NodeLabelList(MyHiers, "all", missingData=missingData), fixed=TRUE)  #maybe change this later when other options
   return(tree)
 }
 
@@ -270,7 +273,7 @@ ReturnTaxSet <- function(Taxon, TreeData) {
 	return(TreeData[whichRows, dim(TreeData)[2]])
 }
 
-NodeLabelList <- function(MyHiers, label="all", missingData) {  #also make an option to just label genus, etc. 
+NodeLabelList <- function(MyHiers, label="all", missingData) {  #also make an option to just label genus, etc.
   TreeData <- MakeTreeData(MyHiers)
   if(any(is.na(TreeData))){
     TreeData <- AutofillTaxonNames(TreeData)
@@ -298,7 +301,7 @@ NodeLabelList <- function(MyHiers, label="all", missingData) {  #also make an op
   if(any(is.na(names(ListOfSpeciesPerNode))) || any(names(ListOfSpeciesPerNode) == "Not assigned")){
     whichMissing <- c(which(is.na(names(ListOfSpeciesPerNode))), which(names(ListOfSpeciesPerNode) == "Not assigned"))
     ListOfSpeciesPerNode <- ListOfSpeciesPerNode[-whichMissing]
-  }  
+  }
   return(ListOfSpeciesPerNode)
 }
 

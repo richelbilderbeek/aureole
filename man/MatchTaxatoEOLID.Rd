@@ -10,8 +10,6 @@ MatchTaxatoEOLID(ListOfTaxa, exact = TRUE)
 \item{ListOfTaxa}{List of EOL taxa to search and download EOL pages}
 
 \item{exact}{Should taxon name match exactly in EOL or fuzzy match}
-
-\item{...}{further arguments to be passed to \code{MatchTaxatoEOLID}}
 }
 \value{
 Returns a table with the submitted taxon name, returned taxon name,

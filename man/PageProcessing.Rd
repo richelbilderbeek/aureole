@@ -12,8 +12,6 @@ PageProcessing(MyEOL, ...)
 \arguments{
 \item{MyEOL}{A filename or R object for downloaded EOL pages}
 
-\item{...}{further arguments to be passed to \code{PageProcessing}}
-
 \item{MyFiles}{A vector of filenames or R objects for EOL or Hier pages}
 
 \item{MyEOL}{A filename or R object for downloaded EOL pages}
@@ -52,8 +50,8 @@ data(MyEOLs)
 PageProcessing(MyEOLs[1])#'
 
 	#Reads in a file
-	#PageProcessing("eol1.xml") 
-	
+	#PageProcessing("eol1.xml")
+
 	#or reads in an R object
 	data(MyEOLs)
 	PageProcessing(MyEOLs[1])

@@ -20,9 +20,6 @@ DownloadSearchedTaxa(ListOfTaxa, to.file = TRUE, MyKey = NULL,
 \item{verbose}{An optional print statement during download}
 
 \item{pages}{EOL page numbers to download}
-
-\item{...}{further arguments to be passed to \code{DownloadEOLpages} and
-\code{DownloadSearchedTaxa}}
 }
 \value{
 Either an XML file(s) downloaded to working directory or as an R
@@ -50,7 +47,7 @@ profile.
 
 #Download taxa files to working directory in R
 \dontrun{DownloadEOLpages(c(1,2,3), to.file=TRUE, MyKey)}
-\dontrun{DownloadSearchedTaxa(c("Anolis_carolinensis", 
+\dontrun{DownloadSearchedTaxa(c("Anolis_carolinensis",
 	"Anolis garmani"), to.file=TRUE, exact=TRUE)}
 
 #Save data as an R object rather than download files
