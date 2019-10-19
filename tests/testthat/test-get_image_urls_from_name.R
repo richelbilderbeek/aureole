@@ -3,5 +3,10 @@ test_that("use", {
   df <- get_image_urls_from_name("Homo sapiens")
 
   # It can be downloaded
-  expect_silent(curl::curl_download(df$url[1], destfile = tempfile()))
+  destfile <- tempfile()
+  utils::download.file(
+    url = df$url[1],
+    destfile = destfile,
+  )
+  expect_true(file.exists(destfile))
 })

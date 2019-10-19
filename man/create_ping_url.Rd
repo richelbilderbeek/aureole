@@ -6,6 +6,9 @@
 \usage{
 create_ping_url(key = NULL)
 }
+\arguments{
+\item{key}{Encyclopedia Of Life identification key}
+}
 \description{
 Create the URL to ping the Encyclopedia of Life
 }

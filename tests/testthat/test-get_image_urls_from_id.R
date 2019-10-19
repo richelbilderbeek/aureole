@@ -6,7 +6,12 @@ test_that("use", {
   urls <- get_image_urls_from_id(species_id)
 
   # It can be downloaded
-  expect_silent(curl::curl_download(urls[1], destfile = tempfile()))
+  destfile <- tempfile()
+  utils::download.file(
+    url = urls[1],
+    destfile = destfile,
+  )
+  expect_true(file.exists(destfile))
 })
 
 test_that("no dataObjects", {
