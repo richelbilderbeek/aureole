@@ -48,6 +48,12 @@ download_search_results <- function(
   testit::assert("itemsPerPage" %in% names(eol_metadata))
   testit::assert("results" %in% names(eol_metadata))
   n_results <- as.numeric(eol_metadata$totalResults$text)
+  if (n_results == 0) {
+    stop(
+      "No results for species with name '", species_name, "' ",
+      "with 'use_exact_name' set to '", use_exact_name, "'. \n"
+    )
+  }
   start_index <- as.numeric(eol_metadata$startIndex$text)
   testit::assert(start_index == 1)
   items_per_page <- as.numeric(eol_metadata$itemsPerPage$text)

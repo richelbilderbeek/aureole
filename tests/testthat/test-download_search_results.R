@@ -8,10 +8,29 @@ test_that("use, Homo sapiens", {
 })
 
 test_that("use, Pan troglodytes", {
-  expect_silent(download_search_results(species_name = "Pan troglodytes"))
+  expect_silent(
+    download_search_results(
+      species_name = "Pan troglodytes"
+    )
+  )
 })
 
 test_that("abuse", {
+
+  expect_error(
+    download_search_results(
+      species_name = "Monster Of Loch Ness" # A non-existing creature
+    ),
+    "No results for species with name 'Monster Of Loch Ness'"
+  )
+  expect_error(
+    download_search_results(
+      species_name = "Monster Of Loch Ness", # A non-existing creature
+      use_exact_name = FALSE
+    ),
+    "No results for species with name 'Monster Of Loch Ness'"
+  )
+
   expect_error(
     download_search_results(
       species_name = c("two", "too", "many")
