@@ -4,7 +4,15 @@
 \alias{download_searches_results}
 \title{Get the Encyclopedia Of Life pages for multiple taxa}
 \usage{
-download_searches_results(taxon_names)
+download_searches_results(species_names, use_exact_name = TRUE,
+  verbose = FALSE)
+}
+\arguments{
+\item{species_names}{names of one or more species}
+
+\item{use_exact_name}{do use the exact name}
+
+\item{verbose}{give more output}
 }
 \value{
 a list with as much elements as taxon names. Each
@@ -12,6 +20,25 @@ element is a data frame
 }
 \description{
 Get the Encyclopedia Of Life pages for multiple taxa
+}
+\examples{
+library(testthat)
+
+species_names <- c("Homo sapiens", "Pan troglodytes")
+results <- download_searches_results(species_names)
+
+expect_equal(class(results), "list")
+expect_equal(length(results), length(species_names))
+
+df <- results[[1]]
+expect_equal(class(df), "data.frame")
+expect_true("id" \%in\% names(df))
+expect_true("title" \%in\% names(df))
+expect_true("link" \%in\% names(df))
+expect_true("content" \%in\% names(df))
+}
+\seealso{
+use \link{download_search_results} to search for one species
 }
 \author{
 Richel J.C. Bilderbeek

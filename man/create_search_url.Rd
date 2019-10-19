@@ -6,6 +6,11 @@
 \usage{
 create_search_url(species_name, use_exact_name = TRUE)
 }
+\arguments{
+\item{species_name}{name of a species}
+
+\item{use_exact_name}{do use the exact name}
+}
 \description{
 Create a URL to search the Encyclopedia of Life
 }

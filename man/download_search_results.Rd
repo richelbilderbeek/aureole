@@ -33,3 +33,7 @@ expect_true("title" \%in\% names(df))
 expect_true("link" \%in\% names(df))
 expect_true("content" \%in\% names(df))
 }
+\seealso{
+use \link{download_searches_results} to search for more
+than one species
+}

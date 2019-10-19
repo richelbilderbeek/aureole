@@ -7,6 +7,10 @@ for that species}
 \usage{
 download_image_urls_from_id(species_id)
 }
+\arguments{
+\item{species_id}{the EOL ID of a species.
+Use \link{download_search_results} to find the ID of a species}
+}
 \value{
 a URL if there is a URL, an empty string otherwise
 }

@@ -1,5 +1,6 @@
 #' Get the URLs of the Encyclopedia Of Life images
 #' for that species
+#' @inheritParams default_params_doc
 #' @return a URL if there is a URL, an empty string otherwise
 #' @examples
 #' species_id <- download_search_results("Homo sapiens")$id[1]
