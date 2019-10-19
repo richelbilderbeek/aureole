@@ -12,6 +12,9 @@ to_url_friendly_format(species_name)
 \description{
 Convert a human written name to something that can fit in a URL
 }
+\details{
+Inspired on \code{Reol::APItaxon}
+}
 \author{
 Richel J.C. Bilderbeek
 }
