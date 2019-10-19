@@ -1,7 +1,7 @@
-Package: reol
+Package: aureole
 Version: 2.0
 Title: R interface to the Encyclopedia of Life
-Author: Barb Banbury <darwinthesun@gmail.com>, Brian O'Meara <bomeara@utk.edu>, Richel J.C. Bilderbeek <richel@richelbilderbeek.nl>
+Author: Richel J.C. Bilderbeek <richel@richelbilderbeek.nl>
 Maintainer: Richel J.C. Bilderbeek <richel@richelbilderbeek.nl>
 Imports: 
     ape,
@@ -17,8 +17,8 @@ LazyData: yes
 Description: An R interface to the Encyclopedia of Life API. 
     Includes functions for downloading 
     and extracting information off the EOL pages.
-License: GPL (>= 2)
-BugReports: https://github.com/richelbilderbeek/reol/issues
+License: GPL-3
+BugReports: https://github.com/richelbilderbeek/aureole/issues
 RoxygenNote: 6.1.1
 Encoding: UTF-8
 VignetteBuilder: knitr
