@@ -1,6 +1,6 @@
-#' Get the Encyclopedia of Life URL for requesting a species
+#' Create a URL to search the Encyclopedia of Life
 #' @export
-get_eol_url <- function(
+create_search_url <- function(
   species_name,
   use_exact_name = TRUE
 ) {

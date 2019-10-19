@@ -8,7 +8,7 @@
 #' @examples
 #' library(testthat)
 #'
-#' df <- get_eol_page(species_name = "Homo sapiens")
+#' df <- download_search_results(species_name = "Homo sapiens")
 #'
 #' expect_equal(class(df), "data.frame")
 #' expect_true("id" %in% names(df))
@@ -16,12 +16,21 @@
 #' expect_true("link" %in% names(df))
 #' expect_true("content" %in% names(df))
 #' @export
-get_eol_page <- function(
+download_search_results <- function(
   species_name,
   use_exact_name = TRUE,
-  verbose = FALSE) {
-
-  url <- get_eol_url(species_name = species_name, use_exact_name = use_exact_name)
+  verbose = FALSE
+) {
+  if (length(species_name) != 1) {
+    stop(
+      "'species_name' must be one species name. \n'",
+      "Actual value: ", species_name
+    )
+  }
+  url <- create_search_url(
+    species_name = species_name,
+    use_exact_name = use_exact_name
+  )
   eol_xml <- RCurl::getURL(url)
 
   # Get the EOL metadata

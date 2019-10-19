@@ -2,12 +2,12 @@
 #' @inheritParams default_params_doc
 #' @return a data frame with species name, ID and URLs
 #' @export
-get_image_urls_from_name <- function(
+download_image_urls_from_name <- function(
   species_name,
   use_exact_name = TRUE,
   verbose = FALSE
 ) {
-  df <- get_eol_page(
+  df <- download_search_results(
     species_name = species_name,
     use_exact_name = use_exact_name,
     verbose = verbose
@@ -19,7 +19,7 @@ get_image_urls_from_name <- function(
 
     # Try to find the URL, do nothing if it cannot be found
     tryCatch({
-      urls_list[[i]]$urls <- get_image_urls_from_id(ids[i])
+      urls_list[[i]]$urls <- download_image_urls_from_id(ids[i])
     }, error = function(e) {} # nolint OK, URL is not found
     )
   }

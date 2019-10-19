@@ -2,10 +2,10 @@
 #' for that species
 #' @return a URL if there is a URL, an empty string otherwise
 #' @examples
-#' species_id <- get_eol_page("Homo sapiens")$id[1]
-#' urls <- get_image_urls_from_id(species_id)
+#' species_id <- download_search_results("Homo sapiens")$id[1]
+#' urls <- download_image_urls_from_id(species_id)
 #' @export
-get_image_urls_from_id <- function(species_id) {
+download_image_urls_from_id <- function(species_id) {
 
   url <- paste0(
     "https://eol.org/api/pages/1.0/", species_id, ".xml",

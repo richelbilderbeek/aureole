@@ -3,6 +3,6 @@ test_that("use", {
     "Pan troglodytes",
     "Pan paniscus"
   )
-  pages <- get_eol_pages(taxon_names)
+  pages <- download_searches_results(taxon_names)
   expect_equal(length(taxon_names), length(pages))
 })

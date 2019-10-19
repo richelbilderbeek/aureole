@@ -20,7 +20,7 @@ library(reol)
 ## Get URLs for species images
 
 ```{r}
-df <- get_image_urls_from_name("Homo sapiens")
+df <- download_image_urls_from_name("Homo sapiens")
 knitr::kable(df)
 ```
 
@@ -29,7 +29,7 @@ knitr::kable(df)
 In case you wonder :-)
 
 ```{r}
-df <- get_eol_page("Homo sapiens")
+df <- download_search_results("Homo sapiens")
 knitr::kable(df)
 ```
 

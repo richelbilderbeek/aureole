@@ -3,10 +3,10 @@
 #' element is a data frame
 #' @author Richel J.C. Bilderbeek
 #' @export
-get_eol_pages <- function(taxon_names) {
+download_searches_results <- function(taxon_names) {
   pages <- list()
   for (i in seq_along(taxon_names)) {
-    pages[[i]] <- get_eol_page(taxon_names[i])
+    pages[[i]] <- download_search_results(taxon_names[i])
   }
   pages
 }
