@@ -25,7 +25,7 @@ library(aureole)
 
 ```{r}
 df <- download_image_urls_from_name("Homo sapiens")
-head(knitr::kable(df))
+knitr::kable(head(df))
 ```
 
 Download the first image:
@@ -40,6 +40,6 @@ knitr::include_graphics(destfile)
 
 ```{r}
 df <- download_search_results("Homo sapiens")
-knitr::kable(df)
+knitr::kable(head(df))
 ```
 
