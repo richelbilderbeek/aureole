@@ -24,8 +24,16 @@ library(aureole)
 ## Get URLs for species images
 
 ```{r}
-df <- get_image_urls_from_name("Homo sapiens")
-knitr::kable(df)
+df <- download_image_urls_from_name("Homo sapiens")
+head(knitr::kable(df))
+```
+
+Download the first image:
+
+```{r}
+destfile <- tempfile(fileext = paste0(".", tools::file_ext(df$url[1])))
+download.file(url = df$url[1], destfile = destfile, quiet = TRUE)
+knitr::include_graphics(destfile)
 ```
 
 ## Search for the IDs of a species
