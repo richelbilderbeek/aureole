@@ -8,7 +8,7 @@ simple API call}
 can_use_eol()
 }
 \value{
-TRUE if the Encyclopedia Of Life website can be used, 
+TRUE if the Encyclopedia Of Life website can be used,
 FALSE otherwise
 }
 \description{

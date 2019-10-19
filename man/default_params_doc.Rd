@@ -5,12 +5,18 @@
 \title{This function does nothing. It is intended to inherit is parameters'
 documentation.}
 \usage{
-default_params_doc(species_id, species_name, use_exact_name, verbose)
+default_params_doc(key, species_id, species_name, species_names,
+  use_exact_name, verbose)
 }
 \arguments{
-\item{species_id}{the Encyclopedia Of Life species ID}
+\item{key}{Encyclopedia Of Life identification key}
+
+\item{species_id}{the EOL ID of a species.
+Use \link{download_search_results} to find the ID of a species}
 
 \item{species_name}{name of a species}
+
+\item{species_names}{names of one or more species}
 
 \item{use_exact_name}{do use the exact name}
 

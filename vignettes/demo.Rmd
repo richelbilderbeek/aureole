@@ -18,19 +18,28 @@ knitr::opts_chunk$set(
 # Use
 
 ```{r setup}
-library(reol)
-```
-
-## Get a species ID
-
-```
-df <- get_eol_page("Homo sapiens")
-knitr::kable(df)
+library(aureole)
 ```
 
 ## Get URLs for species images
 
+```{r}
+df <- download_image_urls_from_name("Homo sapiens")
+knitr::kable(head(df))
 ```
-df <- get_image_urls_from_name("Homo sapiens")
-knitr::kable(df)
+
+Download the first image:
+
+```{r}
+destfile <- tempfile(fileext = paste0(".", tools::file_ext(df$url[1])))
+download.file(url = df$url[1], destfile = destfile, quiet = TRUE)
+knitr::include_graphics(destfile)
 ```
+
+## Search for the IDs of a species
+
+```{r}
+df <- download_search_results("Homo sapiens")
+knitr::kable(head(df))
+```
+

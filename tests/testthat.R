@@ -1,4 +1,4 @@
 library(testthat)
-library(reol)
+library(aureole)
 
-test_check("reol")
+test_check("aureole")
