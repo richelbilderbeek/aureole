@@ -18,7 +18,7 @@ remotes::install_github("richelbilderbeek/aureole")
 ## Use
 
 ```
-library(reol)
+library(aureole)
 ```
 
 ## Get URLs for species images
