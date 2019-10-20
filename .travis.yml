@@ -1,4 +1,34 @@
-# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
-
-language: R
+language: r
+dist: bionic
 cache: packages
+
+r_github_packages:
+  - jimhester/covr
+  - jimhester/lintr
+  - ropensci/spelling
+
+before_install:
+  - sudo add-apt-repository -y ppa:opencpu/imagemagick
+  - sudo apt-get update
+  - sudo apt-get install -y libmagick++-dev
+  - sudo apt install -qq libmpfr-dev
+  # Check dead links
+  - sudo apt-get install -qq npm
+  - npm config set strict-ssl false
+  - sudo npm install -g markdown-link-check
+
+before_script:
+  - if [ -f ".lintr" ]; then echo "Do use Hadley Wickham's style guide"; exit 1; fi
+  # proselint
+  - sudo pip install proselint
+
+script:
+  - travis_wait 60 R CMD build .
+  - travis_wait 60 R CMD check *tar.gz
+
+after_success:
+  - travis_wait 60 Rscript -e 'covr::codecov()'
+  - proselint *.md | egrep -v "typography\.symbols\.curly_quotes"
+  # Check dead links
+  - rm .travis.yml
+  - ./scripts/check_dead_links || true
