@@ -5,7 +5,7 @@ Branch    |[![Travis CI logo](pics/TravisCI.png)](https://travis-ci.org)        
 `master`  |[![Build Status](https://travis-ci.org/richelbilderbeek/aureole.svg?branch=master)](https://travis-ci.org/richelbilderbeek/aureole)  |[![codecov.io](https://codecov.io/github/richelbilderbeek/aureole/coverage.svg?branch=master)](https://codecov.io/github/richelbilderbeek/aureole?branch=master)
 `develop` |[![Build Status](https://travis-ci.org/richelbilderbeek/aureole.svg?branch=develop)](https://travis-ci.org/richelbilderbeek/aureole) |[![codecov.io](https://codecov.io/github/richelbilderbeek/aureole/coverage.svg?branch=develop)](https://codecov.io/github/richelbilderbeek/aureole?branch=develop)
 
-![](pics/aureole.png)
+![](pics/aureole_logo.png)
 
 `aureole` is an R package to query the Encyclopedia Of Life.
 
