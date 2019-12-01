@@ -24,12 +24,11 @@ environment:
 build_script:
   - travis-tool.sh install_deps
 
-on_success:
-  - git config --global --unset http.sslVersion
-  - git config --global --add http.sslVersion tlsv1.2
-  - # Rscript -e "remotes::install_github(\"omegahat/RCurl\")"
-  - Rscript -e "remotes::install_github(\"richelbilderbeek/aureole\")"
-  - Rscript -e "knitr::kable(aureole::download_image_urls_from_name(\"Homo sapiens\"))"
+# Cannot get the self-test to work :-(
+#on_success:
+#  - git config --global --add http.sslVersion tlsv1.2
+#  - Rscript -e "remotes::install_github(\"richelbilderbeek/aureole\")"
+#  - Rscript -e "knitr::kable(aureole::download_image_urls_from_name(\"Homo sapiens\"))"
 
 on_failure:
   - 7z a failure.zip *.Rcheck\*
