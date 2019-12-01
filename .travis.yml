@@ -40,7 +40,7 @@ script:
 
 after_script:
   - Rscript -e "remotes::install_github(\"richelbilderbeek/aureole\")"
-  - Rscript -e "knitr::kable(aureole::download_image_urls_from_name(\"Homo sapiens"))"
+  - Rscript -e "knitr::kable(aureole::download_image_urls_from_name(\"Homo sapiens\"))"
 
 after_success:
   - travis_wait 60 Rscript -e 'covr::codecov()'
