@@ -25,6 +25,7 @@ build_script:
   - travis-tool.sh install_deps
 
 on_success:
+  - git config --global --unset http.sslVersion
   - git config --global --add http.sslVersion tlsv1.2
   - # Rscript -e "remotes::install_github(\"omegahat/RCurl\")"
   - Rscript -e "remotes::install_github(\"richelbilderbeek/aureole\")"
