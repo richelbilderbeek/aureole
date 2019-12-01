@@ -25,7 +25,8 @@ build_script:
   - travis-tool.sh install_deps
 
 on_success:
-  - Rscript -e "remotes::install_github(\"omegahat/RCurl\")"
+  - config --global --add http.sslVersion tlsv1.2
+  - # Rscript -e "remotes::install_github(\"omegahat/RCurl\")"
   - Rscript -e "remotes::install_github(\"richelbilderbeek/aureole\")"
   - Rscript -e "knitr::kable(aureole::download_image_urls_from_name(\"Homo sapiens\"))"
 
