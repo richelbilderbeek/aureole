@@ -24,6 +24,9 @@ environment:
 build_script:
   - travis-tool.sh install_deps
 
+after_test:
+  - Rscript -e 'knitr::kable(aureole::download_image_urls_from_name("Homo sapiens"))'
+
 on_failure:
   - 7z a failure.zip *.Rcheck\*
   - appveyor PushArtifact failure.zip
