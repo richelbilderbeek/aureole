@@ -21,4 +21,3 @@ test_that("no dataObjects", {
     "No image URL found for species with ID 18832476"
   )
 })
-

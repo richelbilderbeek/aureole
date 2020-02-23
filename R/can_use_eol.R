@@ -5,5 +5,5 @@
 #' @author Richel J.C. Bilderbeek
 #' @export
 can_use_eol <- function() {
-  ping_eol() == "Success"
+  aureole::ping_eol() == "Success"
 }

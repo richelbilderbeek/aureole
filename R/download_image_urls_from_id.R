@@ -38,7 +38,7 @@ download_image_urls_from_id <- function(species_id) {
 
   data_objects <- taxon_concept$dataObjects
   testit::assert(names(data_objects)[length(data_objects)] == ".attrs")
-  data_objects <- data_objects[1:length(data_objects) - 1]
+  data_objects <- data_objects[1:(length(data_objects) - 1)]
   testit::assert("dataObject" == names(data_objects))
 
   n_data_objects <- length(data_objects)

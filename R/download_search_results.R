@@ -65,7 +65,7 @@ download_search_results <- function(
   eol_results <- eol_metadata$results
   # Remove the last result with the attributes
   testit::assert(names(eol_results)[length(eol_results)] == ".attrs")
-  eol_results <- eol_results[1:length(eol_results) - 1]
+  eol_results <- eol_results[1:(length(eol_results) - 1)]
 
   # There may be more results that the maximally displayed per page
   # For now, I only read the results of the first page

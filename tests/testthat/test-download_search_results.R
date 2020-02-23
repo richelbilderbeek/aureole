@@ -38,4 +38,3 @@ test_that("abuse", {
     "'species_name' must be one species name"
   )
 })
-
