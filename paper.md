@@ -127,4 +127,5 @@ best evolutionary model.
 # References
 
  * `@Wilson:2003`: Wilson, Edward O. "The encyclopedia of life." Trends in Ecology & Evolution 18.2 (2003): 77-80.
+ * `@Banbury:2014`: Banbury, Barbara L., and Brian C. O'Meara. "Reol: R interface to the E ncyclopedia of L ife." Ecology and Evolution 4.12 (2014): 2577-2583.
 
