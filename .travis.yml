@@ -15,6 +15,8 @@ r_github_packages:
   - jimhester/covr
   - jimhester/lintr
   - ropensci/spelling
+  - MangoTheCat/goodpractice
+  - ropensci/spelling
 
 before_install:
   # ImageMagick
@@ -24,10 +26,6 @@ before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install imagemagick@6; fi
   # Rmpfr
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt install -qq libmpfr-dev; fi
-  # Check dead links
-  #- sudo apt-get install -qq npm
-  #- npm config set strict-ssl false
-  #- sudo npm install -g markdown-link-check
 
 before_script:
   - if [ -f ".lintr" ]; then echo "Do use Hadley Wickham's style guide"; exit 1; fi
@@ -43,8 +41,14 @@ after_script:
   - Rscript -e "knitr::kable(aureole::download_image_urls_from_name(\"Homo sapiens\"))"
 
 after_success:
-  - travis_wait 60 Rscript -e 'covr::codecov()'
-  - proselint *.md | egrep -v "typography\.symbols\.curly_quotes"
-  # Check dead links
-  #- rm .travis.yml
-  #- ./scripts/check_dead_links || true
+  # Lint
+  - if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$TRAVIS_R_VERSION_STRING" == "release" ]; then Rscript -e 'lintr::lint_package()'; fi
+  # Codecov
+  - if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$TRAVIS_R_VERSION_STRING" == "devel" ]; then travis_wait 20 Rscript -e 'covr::codecov()'; fi
+  # Goodpractice
+  - if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$TRAVIS_R_VERSION_STRING" == "release" ]; then travis_wait 60 Rscript -e 'goodpractice::gp()'; fi
+  # Proselint
+  - if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$TRAVIS_R_VERSION_STRING" == "release" ]; then proselint *.md | egrep -v "typography\.symbols\.curly_quotes" | egrep -v "typography\.symbols\.sentence_spacing" ; fi
+  # No local files created
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./scripts/check_no_local_files; fi
+
