@@ -14,7 +14,6 @@ Suggests:
     knitr,
     testit,
     rmarkdown
-LazyData: yes
 Description: An R interface to the Encyclopedia of Life API. 
     Includes functions for downloading 
     and extracting information off the EOL pages.
